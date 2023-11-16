@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/components/my_button.dart';
 import 'package:modernlogintute/components/my_textfield.dart';
-import 'package:modernlogintute/components/square_tile.dart';
+import 'package:modernlogintute/dataproduk.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -10,9 +10,17 @@ class LoginPage extends StatelessWidget {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // sign user in method
-  void signUserIn() {}
+  // // sign user in method
+   void signUserIn(BuildContext context) {
+    // Lakukan verifikasi login atau tindakan yang sesuai di sini
 
+    // Pindah ke layar selanjutnya jika login berhasil
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => DesainDataProduk()), // Gantilah NextScreen() dengan layar selanjutnya yang ingin ditampilkan
+    );
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,75 +87,11 @@ class LoginPage extends StatelessWidget {
 
               // sign in button
               MyButton(
-                onTap: signUserIn,
-              ),
-
-              const SizedBox(height: 50),
-
-              // or continue with
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        thickness: 0.5,
-                        color: Colors.grey[400],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Text(
-                        'Or continue with',
-                        style: TextStyle(color: Colors.grey[700]),
-                      ),
-                    ),
-                    Expanded(
-                      child: Divider(
-                        thickness: 0.5,
-                        color: Colors.grey[400],
-                      ),
-                    ),
-                  ],
+                onTap: () {
+                // Panggil fungsi signUserIn saat tombol ditekan
+                  signUserIn(context);
+                 },
                 ),
-              ),
-
-              const SizedBox(height: 50),
-
-              // google + apple sign in buttons
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  // google button
-                  SquareTile(imagePath: 'lib/images/google.png'),
-
-                  SizedBox(width: 25),
-
-                  // apple button
-                  SquareTile(imagePath: 'lib/images/apple.png')
-                ],
-              ),
-
-              const SizedBox(height: 50),
-
-              // not a member? register now
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Not a member?',
-                    style: TextStyle(color: Colors.grey[700]),
-                  ),
-                  const SizedBox(width: 4),
-                  const Text(
-                    'Register now',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              )
             ],
           ),
         ),
